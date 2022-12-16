@@ -12,6 +12,9 @@ input{
     font-size: 20px;
     
 }
+input:active{
+    border: none;
+}
 select{
     background: none;
     border:0;
