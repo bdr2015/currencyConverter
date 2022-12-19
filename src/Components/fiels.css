@@ -1,28 +1,58 @@
-.group{
-    background: white;
-    width: 400px;
-    margin: 0 auto 20px;
-    display: grid;
-    grid-template-columns: 200px 200px;
-    border-radius: 15px;
-}
-input{
-    background: none;
-    border:0;
-    font-size: 20px;
+@media(min-width:1280px){
+    .group{
+        display: flex;
+        padding: 5px 0px;
+        align-items: center;
+        justify-content: center;
+       
+    }
+    .group input{
+        height: 50px;
+        width: 200px;
+        padding: 0px;
+        padding-left: 10px;
+        border:0px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
     
+    }
+    .group select{
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+       height: 50px;
+        width: 200px;
+        padding: 0px;
+       border:0px;
+       border-left: 1px solid black;
+       padding-left: 10px;
+    }
 }
-input:active{
-    border: none;
-}
-select{
-    background: none;
-    border:0;
-    font-size: 15px;
-}
-input{
-    padding-left: 10px;
-}
-select{
-    padding: 15px;
+@media(max-width:1280px){
+    .group{
+        display: flex;
+        padding: 5px 0px;
+        justify-content: center;
+        flex-direction: column;
+        width:80%
+       
+    }
+    .group input{
+        height: 70px;
+        padding: 0px;
+        padding-left: 10px;
+        border:0px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+
+    
+    }
+    .group select{
+        border-radius: 20px;
+       height: 70px;
+        
+        padding: 0px;
+       border:0px;
+       border-left: 1px solid black;
+       padding-left: 10px;
+    }
 }

@@ -1,7 +1,6 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Field from './Components/Field';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {getCurrencies} from './store/slice';
 import {changeSelected1,changeSelected2,changeValue1,changeValue2,changeRate1,changeRate2} from './store/slice';
@@ -11,7 +10,7 @@ function App() {
   useEffect(()=>{
     dispatch(getCurrencies())
     
-  },[])
+  },[dispatch])
 
 
  let input1 = useSelector((state)=>state.inputValue1);
@@ -21,7 +20,6 @@ function App() {
 
 
  let changeInput1 = (e)=>{
-  let result = e.target.value/
   dispatch(changeValue1(e.target.value))
  }
  let changeInput2 = (e)=>{
@@ -51,8 +49,9 @@ function App() {
     document.title = `${headerCur1} - ${headerCur2}`
     return(
         <div className='appWrapper'>
+          <h1>Currency Converter</h1>
           <div className='window'>
-            <div className='fieldWrapper'>
+            
               <Field
                input={input1}
                changeInput={changeInput1}
@@ -67,7 +66,7 @@ function App() {
                changeSelected={changeSelec2}
                allCurrencies={allCurrencies}
                />
-              </div>
+              
           </div>
         </div>
     )

@@ -14,6 +14,7 @@ export const getCurrencies = createAsyncThunk(
     'currency/getCurrencies',
     async()=>{
         const response = await (await axios.get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')).data;
+        response.push({"r030":20,"txt":"Гривня","rate":1,"cc":"UAH"})
         return response
     }
 )
@@ -24,11 +25,11 @@ const slice = createSlice({
     reducers:{
         changeValue1(state,action){
             state.inputValue1 = action.payload
-            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(5)
+            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(4)
         },
         changeValue2(state,action){
             state.inputValue2 = action.payload
-            state.inputValue1 = (current(state).rate2/current(state).rate1 * current(state).inputValue2).toFixed(5)
+            state.inputValue1 = (current(state).rate2/current(state).rate1 * current(state).inputValue2).toFixed(4)
         },
         changeSelected1(state,action){
             state.selected1 = action.payload
@@ -38,11 +39,11 @@ const slice = createSlice({
         },
         changeRate1(state,action){
             state.rate1 = action.payload
-            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(5)
+            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(4)
         },
         changeRate2(state,action){
             state.rate2 = action.payload
-            state.inputValue1 = (current(state).rate2/current(state).rate1 * current(state).inputValue2).toFixed(5)
+            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(4)
         }
     },
     extraReducers:(builder)=>{
@@ -50,7 +51,7 @@ const slice = createSlice({
             state.allCurrencies = action.payload
             state.rate1 = action.payload.find(el=>el.txt===current(state).selected1).rate
             state.rate2 = action.payload.find(el=>el.txt===current(state).selected2).rate
-            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(5)
+            state.inputValue2 = (current(state).rate1/current(state).rate2 * current(state).inputValue1).toFixed(4)
         })
     }
     
